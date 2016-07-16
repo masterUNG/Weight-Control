@@ -47,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
         }   // for
 
+        //For exerciseTABLE
+        String[] exerciseStrings = myData.getExerciseStrings();
+        String[] burnStrings = myData.getBurnStrings();
+        for (int i=0;i<exerciseStrings.length;i+=1) {
+            myManage.addExercise(exerciseStrings[i], burnStrings[i]);
+        }
+
 
 
 
