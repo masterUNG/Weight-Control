@@ -24,6 +24,16 @@ public class MyManage {
     public static final String column_exercise = "Exercise";
     public static final String column_burn = "Burn";
 
+    //For userTABLE
+    public static final String user_table = "userTABLE";
+    public static final String column_Name = "Name";
+    public static final String column_Surname = "Surname";
+    public static final String column_Weight = "Weight";
+    public static final String column_Height = "Height";
+    public static final String column_Sex = "Sex";
+    public static final String column_Age = "Age";
+    public static final String column_BMR = "BMR";
+
 
     public MyManage(Context context) {
 
@@ -31,6 +41,21 @@ public class MyManage {
         sqLiteDatabase = myOpenHelper.getWritableDatabase();
 
     }   // Constructor
+
+    //Add User
+    public long addUser(String strName,
+                        String strSurname,
+                        String strWeight,
+                        String strHeight,
+                        String strSex,
+                        String strAge,
+                        String strBMR) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_Name, strName);
+
+        return 0;
+    }
 
     //Add Exercise
     public long addExercise(String strExercise,

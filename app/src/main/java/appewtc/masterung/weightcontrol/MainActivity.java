@@ -1,8 +1,10 @@
 package appewtc.masterung.weightcontrol;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +26,26 @@ public class MainActivity extends AppCompatActivity {
         //Add First Data
         addFirstData();
 
+        //CheckUserTABLE
+        checkUserTABLE();
+
+
     }   // Main Method
+
+    private void checkUserTABLE() {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE", null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount() == 0) {
+            startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+        }   // if
+        cursor.close();
+
+
+    }   // checkUser
 
     private void addFirstData() {
 
