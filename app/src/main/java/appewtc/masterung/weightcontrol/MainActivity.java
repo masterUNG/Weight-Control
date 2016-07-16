@@ -16,7 +16,17 @@ public class MainActivity extends AppCompatActivity {
 
         myManage = new MyManage(this);
 
+        //Test Add Value
+        testAddValue();
+
     }   // Main Method
+
+    private void testAddValue() {
+
+        myManage.addFood("food", "unit", "calories");
+        myManage.addExercise("exercise", "burn");
+
+    }   // testAddValue
 
 
 }   // Main Class
