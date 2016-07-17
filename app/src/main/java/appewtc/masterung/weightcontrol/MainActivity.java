@@ -59,10 +59,22 @@ public class MainActivity extends AppCompatActivity {
         //Show Calories
         showCalories();
 
-        //
+        //Show Burn
+        showBurn();
 
 
     }   // Main Method
+
+    private void showBurn() {
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        showCalories();
+        showBurn();
+    }
 
     public void clickBurn(View view) {
         Intent intent = new Intent(MainActivity.this, BurnListView.class);
@@ -87,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
             cursor.moveToFirst();
             double douTotalCalories = 0;
 
-            Log.d("WeightV4", "cursor.leng ==> " + cursor.getCount());
-
             if (cursor.getCount() == 0) {
                 caloriesTextView.setText("Calories ==> " + "?");
             } else {
@@ -99,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
                     caloriesStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_calories));
                     douTotalCalories = douTotalCalories + Double.parseDouble(caloriesStrings[i]);
-                    Log.d("WeightV4", "Total Cal (" + i + ") = " + douTotalCalories);
 
                     cursor.moveToNext();
                 }   // for
