@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/textview14"
+        android:id="@+id/txtBurnList"
         android:textSize="@dimen/h1"
         android:layout_centerHorizontal="true"
         android:textColor="@color/text" />
@@ -24,16 +24,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/linbottonCal">
+        android:id="@+id/linbottonBurn">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Calories"
+            android:text="Add Burn"
             android:id="@+id/button5"
             android:layout_weight="1"
-            android:textColor="@color/text"
-            android:onClick="clickAddCalories" />
+            android:textColor="@color/text" />
 
         <Button
             android:layout_width="match_parent"
@@ -41,16 +40,15 @@
             android:text="Back"
             android:id="@+id/button6"
             android:layout_weight="1"
-            android:textColor="@color/text"
-            android:onClick="clickBackCalories" />
+            android:textColor="@color/text" />
     </LinearLayout>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_below="@+id/textview14"
-        android:layout_above="@+id/linbottonCal"
+        android:id="@+id/livBurnList"
+        android:layout_below="@+id/txtBurnList"
+        android:layout_above="@+id/linbottonBurn"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:background="#82ffffff" />

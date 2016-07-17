@@ -31,7 +31,8 @@
             android:text="Burn"
             android:id="@+id/button3"
             android:layout_weight="1"
-            android:textColor="@color/text" />
+            android:textColor="@color/text"
+            android:onClick="clickBurn" />
 
         <Button
             android:layout_width="match_parent"

@@ -62,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
     }   // Main Method
 
+    public void clickBurn(View view) {
+        Intent intent = new Intent(MainActivity.this, BurnListView.class);
+        intent.putExtra("Date", dateString);
+        startActivity(intent);
+    }
+
     public void clickCalories(View view) {
         Intent intent = new Intent(MainActivity.this, CaloriesListView.class);
         intent.putExtra("Date", dateString);

@@ -23,7 +23,7 @@ public class CaloriesListView extends AppCompatActivity {
         dateString = getIntent().getStringExtra("Date");
 
         //Show Date
-        TextView textView = (TextView) findViewById(R.id.textView14);
+        TextView textView = (TextView) findViewById(R.id.textview14);
         textView.setText("Date = " + dateString);
 
         //Create ListView
