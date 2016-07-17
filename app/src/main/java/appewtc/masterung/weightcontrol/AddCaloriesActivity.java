@@ -1,9 +1,14 @@
 package appewtc.masterung.weightcontrol;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,8 +43,8 @@ public class AddCaloriesActivity extends AppCompatActivity {
                 MODE_PRIVATE, null);
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM foodTABLE", null);
         cursor.moveToFirst();
-        String[] foodStrings = new String[cursor.getCount()];
-        String[] calStrings = new String[cursor.getCount()];
+        final String[] foodStrings = new String[cursor.getCount()];
+        final String[] calStrings = new String[cursor.getCount()];
         String[] unitStrings = new String[cursor.getCount()];
         String[] valueStrings = new String[cursor.getCount()];
 
@@ -57,6 +62,40 @@ public class AddCaloriesActivity extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(this, foodStrings, valueStrings);
         listView.setAdapter(myAdapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                chooseAmount(foodStrings[i], calStrings[i]);
+
+            }   // onItemClick
+        });
+
     }   // read
+
+    private void chooseAmount(final String foodString, final String calString) {
+
+        CharSequence[] charSequences = new CharSequence[]{"1", "2", "3", "4", "5"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.doremon48);
+        builder.setTitle(foodString);
+        builder.setSingleChoiceItems(charSequences, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                double douCalories = Double.parseDouble(calString) * (i + 1);
+
+                Log.d("WeightV2", "Amount (" + (i + 1) + ") = " + douCalories);
+
+                MyManage myManage = new MyManage(AddCaloriesActivity.this);
+                myManage.addCalories(dateString, foodString, Double.toString(douCalories));
+                dialogInterface.dismiss();
+                finish();
+
+            }   // onClick
+        });
+        builder.show();
+
+    }   // chooseAmount
 
 }   // Main Class

@@ -34,6 +34,13 @@ public class MyManage {
     public static final String column_Age = "Age";
     public static final String column_BMR = "BMR";
 
+    //For caloriesTABLE
+    public static final String calories_table = "caloriesTABLE";
+    public static final String column_date = "Date";
+
+    //For burnTABLE
+    public static final String burn_table = "burnTABLE";
+
 
     public MyManage(Context context) {
 
@@ -41,6 +48,33 @@ public class MyManage {
         sqLiteDatabase = myOpenHelper.getWritableDatabase();
 
     }   // Constructor
+
+    //Add Burn
+    public long addBurn(String strDate,
+                            String strExercise,
+                            String strBurn) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_date, strDate);
+        contentValues.put(column_exercise, strExercise);
+        contentValues.put(column_burn, strBurn);
+
+        return sqLiteDatabase.insert(burn_table, null, contentValues);
+    }
+
+
+    //Add Calories
+    public long addCalories(String strDate,
+                            String strFood,
+                            String strCalories) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_date, strDate);
+        contentValues.put(column_food, strFood);
+        contentValues.put(column_calories, strCalories);
+
+        return sqLiteDatabase.insert(calories_table, null, contentValues);
+    }
 
     //Add User
     public long addUser(String strName,
