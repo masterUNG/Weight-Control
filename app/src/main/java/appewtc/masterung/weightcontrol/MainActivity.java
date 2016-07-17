@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         //Show Calories
         showCalories();
 
+        //
+
 
     }   // Main Method
 
@@ -83,11 +85,28 @@ public class MainActivity extends AppCompatActivity {
                     MODE_PRIVATE, null);
             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM caloriesTABLE WHERE Date = " + "'" + dateString + "'", null);
             cursor.moveToFirst();
+            double douTotalCalories = 0;
+
+            Log.d("WeightV4", "cursor.leng ==> " + cursor.getCount());
 
             if (cursor.getCount() == 0) {
                 caloriesTextView.setText("Calories ==> " + "?");
             } else {
-            }
+
+                String[] caloriesStrings = new String[cursor.getCount()];
+
+                for (int i=0;i<cursor.getCount();i+=1) {
+
+                    caloriesStrings[i] = cursor.getString(cursor.getColumnIndex(MyManage.column_calories));
+                    douTotalCalories = douTotalCalories + Double.parseDouble(caloriesStrings[i]);
+                    Log.d("WeightV4", "Total Cal (" + i + ") = " + douTotalCalories);
+
+                    cursor.moveToNext();
+                }   // for
+
+            }   // if
+            cursor.close();
+            caloriesTextView.setText("Calories ==> " + Double.toString(douTotalCalories));
 
 
         } catch (Exception e) {
