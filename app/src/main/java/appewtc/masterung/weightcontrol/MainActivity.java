@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -54,9 +56,40 @@ public class MainActivity extends AppCompatActivity {
         //Show Name
         showName();
 
+        //Show Calories
+        showCalories();
 
 
     }   // Main Method
+
+    public void clickCalories(View view) {
+        Intent intent = new Intent(MainActivity.this, CaloriesListView.class);
+        intent.putExtra("Date", dateString);
+        startActivity(intent);
+    }
+
+
+    private void showCalories() {
+
+        try {
+
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                    MODE_PRIVATE, null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM caloriesTABLE WHERE Date = " + "'" + dateString + "'", null);
+            cursor.moveToFirst();
+
+            if (cursor.getCount() == 0) {
+                caloriesTextView.setText("Calories ==> " + "?");
+            } else {
+            }
+
+
+        } catch (Exception e) {
+            Log.d("WeightV1", "e showCalories ==> " + e.toString());
+            caloriesTextView.setText("Calories ==> " + "?");
+        }
+
+    }   // showCalories
 
     private void showName() {
 
@@ -69,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         String strBMR = cursor.getString(cursor.getColumnIndex(MyManage.column_BMR));
         nameTextView.setText(strName + " " + strSurname);
         bmrTextView.setText("BMR = " + String.format("%.2f", Double.parseDouble(strBMR)));
+        cursor.close();
 
     }   // showName
 

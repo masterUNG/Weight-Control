@@ -22,7 +22,8 @@
             android:text="Calories"
             android:id="@+id/button2"
             android:layout_weight="1"
-            android:textColor="@color/text" />
+            android:textColor="@color/text"
+            android:onClick="clickCalories" />
 
         <Button
             android:layout_width="match_parent"
