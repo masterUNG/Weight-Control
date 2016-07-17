@@ -18,7 +18,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".CaloriesListView" />
         <activity android:name=".AddCaloriesActivity" />
-        <activity android:name=".BurnListView"></activity>
+        <activity android:name=".BurnListView" />
+        <activity android:name=".AddBurnActivity"></activity>
     </application>
 
 </manifest>
