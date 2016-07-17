@@ -32,6 +32,7 @@ public class BurnListView extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         createListView();
+
     }
 
     private void createListView() {
