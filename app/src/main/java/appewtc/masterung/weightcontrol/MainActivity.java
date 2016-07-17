@@ -5,18 +5,34 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
     //Explicit
     private MyManage myManage;
     private MyData myData;
+    private TextView dateTextView, nameTextView, bmrTextView,
+            caloriesTextView, burnTextView, myBMRTextView;
+    private String dateString;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Bind Widget
+        dateTextView = (TextView) findViewById(R.id.textView8);
+        nameTextView = (TextView) findViewById(R.id.textView9);
+        bmrTextView = (TextView) findViewById(R.id.textView10);
+        caloriesTextView = (TextView) findViewById(R.id.textView11);
+        burnTextView = (TextView) findViewById(R.id.textView12);
+        myBMRTextView = (TextView) findViewById(R.id.textView13);
 
         myManage = new MyManage(this);
 
@@ -28,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         //CheckUserTABLE
         checkUserTABLE();
+
+        //Show Date
+        Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateString = dateFormat.format(calendar.getTime());
+        dateTextView.setText("Date = " + dateString);
+
 
 
     }   // Main Method
@@ -60,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         String[] foodStrings = myData.getFoodStrings();
         String[] unitStrings = myData.getUnitStrings();
         String[] caloriesStrings = myData.getCaloriesStrings();
-        for (int i=0;i<foodStrings.length;i+=1) {
+        for (int i = 0; i < foodStrings.length; i += 1) {
 
             myManage.addFood(foodStrings[i],
                     unitStrings[i],
@@ -71,11 +94,9 @@ public class MainActivity extends AppCompatActivity {
         //For exerciseTABLE
         String[] exerciseStrings = myData.getExerciseStrings();
         String[] burnStrings = myData.getBurnStrings();
-        for (int i=0;i<exerciseStrings.length;i+=1) {
+        for (int i = 0; i < exerciseStrings.length; i += 1) {
             myManage.addExercise(exerciseStrings[i], burnStrings[i]);
         }
-
-
 
 
     }   // addFirstData
