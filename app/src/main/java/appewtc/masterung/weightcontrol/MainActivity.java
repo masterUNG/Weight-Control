@@ -51,9 +51,26 @@ public class MainActivity extends AppCompatActivity {
         dateString = dateFormat.format(calendar.getTime());
         dateTextView.setText("Date = " + dateString);
 
+        //Show Name
+        showName();
+
 
 
     }   // Main Method
+
+    private void showName() {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE", null);
+        cursor.moveToFirst();
+        String strName = cursor.getString(cursor.getColumnIndex(MyManage.column_Name));
+        String strSurname = cursor.getString(cursor.getColumnIndex(MyManage.column_Surname));
+        String strBMR = cursor.getString(cursor.getColumnIndex(MyManage.column_BMR));
+        nameTextView.setText(strName + " " + strSurname);
+        bmrTextView.setText("BMR = " + String.format("%.2f", Double.parseDouble(strBMR)));
+
+    }   // showName
 
     private void checkUserTABLE() {
 
