@@ -53,8 +53,14 @@ public class MyManage {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(column_Name, strName);
+        contentValues.put(column_Surname, strSurname);
+        contentValues.put(column_Weight, strWeight);
+        contentValues.put(column_Height, strHeight);
+        contentValues.put(column_Sex, strSex);
+        contentValues.put(column_Age, strAge);
+        contentValues.put(column_BMR, strBMR);
 
-        return 0;
+        return sqLiteDatabase.insert(user_table, null, contentValues);
     }
 
     //Add Exercise

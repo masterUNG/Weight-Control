@@ -21,6 +21,7 @@ public class SignUpActivity extends AppCompatActivity {
             heightString, ageString, sexString;
     private int indexAnInt = 0;
     private String[] sexStrings = new String[]{"Male", "Female"};
+    private double douBMR = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
         //Calculate BMR
         double[] maleFactorDoubles = new double[]{66, 13.7, 5, 6.8};
         double[] femaleFactorDoubles = new double[] {665, 9.6, 1.8, 4.7};
-        double douBMR = 0;
+
 
         switch (indexAnInt) {
             case 0: // ForMale
@@ -129,8 +130,10 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 MyManage myManage = new MyManage(SignUpActivity.this);
-                
+                myManage.addUser(nameString, surnameString, weightString,
+                        heightString, sexStrings[indexAnInt], ageString, Double.toString(douBMR));
                 dialogInterface.dismiss();
+                finish();
 
             }
         });
